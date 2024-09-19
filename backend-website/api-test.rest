@@ -1,0 +1,19 @@
+
+### Signup Request
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "testuser@example.com",
+  "password": "testpassword"
+}
+
+### Login Request
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpassword"
+}
