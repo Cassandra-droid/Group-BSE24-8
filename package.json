@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "react-menu-website",
   "version": "0.1.0",
   "private": true,
@@ -40,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+=======
+  "dependencies": {
+    "axios": "^1.7.7"
+>>>>>>> 11d824124cca35845b9ed9a485ca065d73281db5
   }
 }
