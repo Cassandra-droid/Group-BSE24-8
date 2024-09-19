@@ -1,0 +1,44 @@
+.footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+  }
+  
+  .socialMedia {
+    margin-bottom: 10px;
+  }
+  
+  .socialMedia svg {
+    margin: 0 10px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .socialMedia svg:hover {
+    color: #ff6347; /* Add a hover effect, like a tomato color */
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  /* Make the footer stick to the bottom when there is less content on the page */
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  footer {
+    margin-top: auto;
+  }
+  

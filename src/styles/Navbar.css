@@ -1,0 +1,100 @@
+/* Basic styling for the navbar */
+.navbar {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 0 20px;
+}
+
+.leftside {
+  display: flex;
+  align-items: center;
+}
+
+.leftside img {
+  width: 80px;
+  height: auto;
+}
+
+.rightside {
+  display: flex;
+  align-items: center;
+}
+
+.rightside a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+.rightside button {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+}
+
+.hiddenLinks {
+  display: none;
+}
+
+/* Media query for screen widths smaller than 768px */
+@media (max-width: 768px) {
+  .rightside a {
+    display: none; /* Hide links on smaller screens */
+  }
+
+  .rightside button {
+    display: block; /* Show the reorder button */
+  }
+
+  .cartContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.cartContainer .cartCount {
+  background-color: #ff4500;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 3px 8px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+
+  .leftside {
+    position: relative;
+  }
+
+  /* When the navbar is open, display the hidden links */
+  .navbar #open .hiddenLinks {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    background-color: #333;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .hiddenLinks a {
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    width: 100%;
+  }
+}

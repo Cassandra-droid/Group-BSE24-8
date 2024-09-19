@@ -1,0 +1,91 @@
+/* Order.css */
+
+.orderPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.orderPage h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.pizzaDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 80%;
+}
+
+.pizzaDetails img {
+  width: 40%;
+  max-width: 150px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.pizzaDetails h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.pizzaDetails p {
+  font-size: 1.2em;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.pizzaDetails form {
+  width: 100%;
+}
+
+.pizzaDetails form div {
+  margin-bottom: 15px;
+}
+
+.pizzaDetails label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.pizzaDetails input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.pizzaDetails button {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pizzaDetails button:hover {
+  background-color: #ff6347;;
+}
+
+.pizzaDetails p {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}

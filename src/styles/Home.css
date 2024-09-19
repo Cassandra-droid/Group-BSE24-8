@@ -1,0 +1,51 @@
+/* Main container for the home page */
+.home {
+    /* Full height background image covering the entire viewport */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Container for the header text and button */
+  .headerContainer {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Transparent black background for contrast */
+    padding: 40px 20px;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  /* Main title styling */
+  .headerContainer h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Subtitle styling */
+  .headerContainer p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+  }
+  
+  /* Button styling */
+  .headerContainer button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ff6347; /* Tomato color for the button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .headerContainer button:hover {
+    background-color: #e5533d; /* Darker shade on hover */
+  }
+  
