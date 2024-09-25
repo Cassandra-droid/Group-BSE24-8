@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "react-menu-website",
   "version": "0.1.0",
   "private": true,
@@ -11,6 +10,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-menu-website": "file:",
@@ -21,8 +21,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --passWithNoTests",
+    "eject": "react-scripts eject",
+    "lint": "eslint './src/**/*.{js,jsx}'"
   },
   "eslintConfig": {
     "extends": [
@@ -41,9 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-=======
-  "dependencies": {
-    "axios": "^1.7.7"
->>>>>>> 11d824124cca35845b9ed9a485ca065d73281db5
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1"
   }
 }
