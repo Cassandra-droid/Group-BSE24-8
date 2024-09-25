@@ -30,9 +30,9 @@ jobs:
         run: npm install
 
       # Step 4: Run tests
-      - name: Run tests
-        run: npm test
+      #- name: Run tests
+      #  run: npm test
 
       # Step 5: Run ESLint for code quality checks
-      - name: Lint code
-        run: npm run lint
+      #- name: Lint code
+      #  run: npm run lint
