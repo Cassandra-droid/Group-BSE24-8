@@ -13,7 +13,6 @@
     "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-menu-website": "file:",
     "react-router-dom": "^6.26.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -22,10 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
-    "lint":"eslint src/**/*.{js,jsx}",
-    "lint:fix":"eslint src/**/*.{js,jsx}--fix"
-  }
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -37,11 +35,11 @@
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/mocks/fileMock.js",
-      "\\.(css|less|scss)$": "<rootDir>/mocks/styleMock.js",
-      "setupFilesAfterEnv": [
-        "<rootDir>/src/setTest.js"
-      ]
-    }
+      "\\.(css|less|scss)$": "<rootDir>/mocks/styleMock.js"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setTest.js"
+    ]
   },
   "browserslist": {
     "production": [
