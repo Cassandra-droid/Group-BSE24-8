@@ -30,6 +30,13 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+  "testEnvironment": "jsdom",
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/mocks/fileMock.js",
+    "\\.(css|less|scss)$": "<rootDir>/mocks/styleMock.js"
+  }
+},
   "browserslist": {
     "production": [
       ">0.2%",
