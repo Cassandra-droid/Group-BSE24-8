@@ -1,17 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import { CartList } from "../helpers/CartList";
 import CartItem from "../components/CartItem";
-import { CartList } from "../helpers/CartList"; 
+import "../styles/Cart.css";
 
 function Cart({ addToCart }) {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleOrderNow = (cartItem) => {
-    
-    addToCart(cartItem);
+  const handleSelectPizza = (pizza) => {
+    // Store the selected pizza in local storage
+    localStorage.setItem('selectedPizza', JSON.stringify(pizza));
 
-    localStorage.setItem('selectedPizza', JSON.stringify(cartItem)); 
-    navigate('/login'); // Navigate to the login page
+    // Update the cart count in the parent component
+    addToCart(pizza);
+
+    // Navigate to the login page
+    navigate('/login');
   };
 
   return (
@@ -24,7 +28,7 @@ function Cart({ addToCart }) {
             image={cartItem.image}
             name={cartItem.name}
             price={cartItem.price}
-            onOrder={() => handleOrderNow(cartItem)} 
+            selectPizza={() => handleSelectPizza(cartItem)} // Pass cartItem to handleSelectPizza
           />
         ))}
       </div>
