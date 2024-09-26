@@ -1,13 +1,13 @@
 {
-  "env":{
-    "node":true,
-    "es2021":true
+  "env": {
+    "node": true,
+    "es2021": true
   },
-  "extends":"eslint:recommended",
-  "parseOptions":{
-    "ecmaVersion":12
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12
   },
-  "rules":{
-    //Add any specific rules for your Node.js project here
+  "rules": {
+    // You can define custom rules here if needed, otherwise leave it empty.
   }
 }
