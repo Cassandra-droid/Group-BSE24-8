@@ -23,6 +23,9 @@
     "build": "react-scripts build",
     "test": "jest",  
     "eject": "react-scripts eject"
+    "lint":"eslint src/**/*.{js,jsx}",
+    "lint:fix":"eslint src/**/*.{js,jsx}--fix"
+  }
   },
   "eslintConfig": {
     "extends": [
