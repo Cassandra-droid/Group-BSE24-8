@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Menu from "./pages/Menu";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Cart from "./pages/Cart"; // Import Cart page
-import Login from "./pages/Login";
-import Order from "./pages/Order";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Home from "./pages/Home.js";
+import Menu from "./pages/Menu.js";
+import About from "./pages/About.js";
+import Contact from "./pages/Contact.js";
+import Cart from "./pages/Cart.js"; // Import Cart page
+import Login from "./pages/Login.js";
+import Order from "./pages/Order.js";
+import Navbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js";
 
 function App() {
   const [cartCount, setCartCount] = useState(0);

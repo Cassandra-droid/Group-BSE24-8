@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const CartItem = ({ image, name, price, selectPizza }) => {
   return (
@@ -14,6 +15,14 @@ const CartItem = ({ image, name, price, selectPizza }) => {
       </button>
     </div>
   );
+};
+
+// Define prop-types for CartItem
+CartItem.propTypes = {
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  selectPizza: PropTypes.func.isRequired,
 };
 
 export default CartItem;

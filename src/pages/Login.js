@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../styles/Login.css"; // Assuming you have the CSS for styling
+import "../styles/Login.css"; 
 
 function Signup() {
   const [loginUsername, setLoginUsername] = useState('');
@@ -28,9 +28,9 @@ function Signup() {
 
       if (response.ok) {
         console.log('Login Success:', data);
-        window.location.href = "/order"; // Redirect to home on successful login
+        window.location.href = "/order"; 
       } else {
-        alert(data.message); // Show error message
+        alert(data.message); 
       }
     } catch (error) {
       alert('An error occurred while logging in.');
@@ -78,7 +78,7 @@ function Signup() {
     <div className="loginPage">
       <div className="leftSide">
         <h1>Login</h1>
-        <p>Already created an account, please login!</p>
+        <p>Already created an account? Please login!</p>
         <form onSubmit={handleLoginSubmit}>
           <label htmlFor="loginUsername">Username</label>
           <input
@@ -104,7 +104,7 @@ function Signup() {
 
       <div className="rightSide">
         <h1>Sign Up</h1>
-        <p>Don't have an account, please first signup!</p>
+        <p>Don&apos;t have an account? Please first sign up!</p> {/* Use &apos; to escape the single quote */}
         <form onSubmit={handleSignupSubmit}>
           <label htmlFor="signupUsername">Username</label>
           <input

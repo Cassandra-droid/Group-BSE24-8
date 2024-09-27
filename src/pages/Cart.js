@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { CartList } from "../helpers/CartList";
-import CartItem from "../components/CartItem";
+import { CartList } from "../helpers/CartList.js";
+import CartItem from "../components/CartItem.js";
+import PropTypes from "prop-types";  // Import PropTypes
 import "../styles/Cart.css";
 
 function Cart({ addToCart }) {
@@ -35,5 +36,10 @@ function Cart({ addToCart }) {
     </div>
   );
 }
+
+// Add PropTypes validation
+Cart.propTypes = {
+  addToCart: PropTypes.func.isRequired, // Ensure addToCart is a required function prop
+};
 
 export default Cart;

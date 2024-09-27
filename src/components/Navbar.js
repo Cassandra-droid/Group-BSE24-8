@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 import Logo from "../assets/pizzalogo.png";
 import { Link } from "react-router-dom";
 import ReorderIcon from '@mui/icons-material/Reorder';
@@ -14,7 +15,7 @@ function Navbar({ cartCount }) {
     
     return (
         <nav className="navbar"> 
-            <div className="leftside" id={openLinks ? "open" : "close"}>
+            <div className="leftside" id={openLinks ? "open" : "close"} data-testid="leftside-navbar">
                 <img src={Logo} alt="Website Logo" />
                 <div className="hiddenLinks">
                     <Link to="/">Home</Link>
@@ -23,7 +24,7 @@ function Navbar({ cartCount }) {
                     <Link to="/contact">Contact</Link>
                     <Link to="/cart">
                         <div className="cartContainer">
-                            <span>Cart: {cartCount}</span> {/* Display cart count */}
+                            <span>Cart: {cartCount}</span>
                         </div>
                     </Link>
                 </div>
@@ -40,12 +41,17 @@ function Navbar({ cartCount }) {
                     </div>
                 </Link>
 
-                <button onClick={toggleNavbar}>
+                <button onClick={toggleNavbar} aria-label="toggleNavbar"> {/* Add aria-label */}
                     <ReorderIcon />
                 </button>
             </div>
         </nav>
     );
 }
+
+// Add PropTypes validation for cartCount
+Navbar.propTypes = {
+  cartCount: PropTypes.number.isRequired,
+};
 
 export default Navbar;

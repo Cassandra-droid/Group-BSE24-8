@@ -1,17 +1,10 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react"; // Removed fireEvent
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "../Navbar"; 
-import Cart from "../../pages/Cart"; 
-import { CartList } from "../../helpers/CartList"; 
 import '@testing-library/jest-dom/extend-expect'; 
-import { useNavigate } from "react-router-dom";
 
-// Mocking useNavigate to control navigation in tests
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: jest.fn(),
-}));
+// Removed unused imports of Cart, CartList, and useNavigate
 
 // Mock localStorage for the test
 beforeEach(() => {
@@ -37,8 +30,6 @@ const renderWithRouter = (ui, { route = '/' } = {}) => {
 };
 
 describe("Integration Test for Cart and Navbar", () => {
-  
-
   test("displays the correct cart count in the Navbar", () => {
     const cartCount = 3; 
     renderWithRouter(<Navbar cartCount={cartCount} />); 
