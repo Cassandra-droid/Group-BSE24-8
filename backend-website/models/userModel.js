@@ -1,5 +1,5 @@
-const db = require('../config/db');
-const bcrypt = require('bcryptjs');
+import db from '../config/db.js'; // Add .js extension
+import bcrypt from 'bcryptjs';
 
 const User = {};
 
@@ -27,4 +27,4 @@ User.findByEmail = (email) => {
   });
 };
 
-module.exports = User;
+export default User; // Use export default instead of module.exports

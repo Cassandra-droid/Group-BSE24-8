@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');  // Import cors
-const authRoutes = require('./routes/authRoutes'); // Import authentication routes
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import authRoutes from './routes/authRoutes.js'; // Note the .js extension for ESM
 
 const app = express();
 
@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 // Authentication routes
 app.use('/api/auth', authRoutes);
-
 
 // Start the server
 const PORT = 5000;

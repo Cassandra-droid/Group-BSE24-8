@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+import mysql from 'mysql2'; // Use import statement for mysql2
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -10,9 +10,11 @@ const db = mysql.createConnection({
 db.connect((err) => {
   if (err) {
     console.error('Database connection error:', err);
-    process.exit(1); // Exit process if unable to connect to database
+    // Instead of process.exit, you can log an error message and return
+    console.error('Exiting process due to database connection error');
+    return;
   }
   console.log('Database connected');
 });
 
-module.exports = db;
+export default db; // Use export default for the db connection

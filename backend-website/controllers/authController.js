@@ -1,8 +1,9 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const db = require('../config/db'); // Import the database connection
+import bcrypt from 'bcrypt'; 
+import jwt from 'jsonwebtoken'; 
+import db from '../config/db.js'; 
 
-exports.signup = async (req, res) => {
+// Signup controller
+export const signup = async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -14,21 +15,21 @@ exports.signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
 
-    db.query(sql, [username, email, hashedPassword], (err, result) => {
+    db.query(sql, [username, email, hashedPassword], (err) => {
       if (err) {
-        console.error("Database error during signup:", err); // Log database error
+        console.error("Database error during signup:", err);
         return res.status(500).json({ message: 'Database error' });
       }
       res.status(201).json({ message: 'User created successfully' });
     });
   } catch (error) {
-    console.error("Error creating user:", error); // Log creation error
+    console.error("Error creating user:", error);
     res.status(500).json({ message: 'Error creating user' });
   }
 };
 
 // Login controller
-exports.login = (req, res) => {
+export const login = (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -38,7 +39,7 @@ exports.login = (req, res) => {
   const sql = 'SELECT * FROM users WHERE username = ?';
   db.query(sql, [username], async (err, results) => {
     if (err) {
-      console.error('Database error during login:', err); // Log the error
+      console.error('Database error during login:', err);
       return res.status(500).json({ message: 'Database error', error: err });
     }
 
