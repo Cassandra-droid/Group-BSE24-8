@@ -1,8 +1,8 @@
-const globals = require("globals");
-const pluginJs = require("@eslint/js");
-const pluginReact = require("eslint-plugin-react");
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import pluginReact from "eslint-plugin-react";
 
-module.exports = {
+export default {
   env: {
     browser: true,
     es2021: true,
@@ -10,7 +10,7 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended", // Use the recommended configuration for React
+    "plugin:react/recommended",
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -18,7 +18,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: "detect", // Automatically detects the react version
+      version: "detect",
     },
   },
   rules: {
