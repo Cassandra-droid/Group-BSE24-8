@@ -2,6 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js'; // Note the .js extension for ESM
+import dotenv from 'dotenv';
+
+dotenv.config();//load environment variables from .env file
 
 const app = express();
 
