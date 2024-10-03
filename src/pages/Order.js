@@ -8,23 +8,20 @@ const OrderPage = () => {
   const [paymentMode, setPaymentMode] = useState('');
   const [deliveryLocation, setDeliveryLocation] = useState('');
   const [selectedPizza, setSelectedPizza] = useState(null);
-  const [quantity, setQuantity] = useState(1); // New state for quantity
-  const [totalPrice, setTotalPrice] = useState(0); // New state for total price
+  const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve pizza information from local storage
     const pizza = JSON.parse(localStorage.getItem('selectedPizza'));
     if (pizza) {
       setSelectedPizza(pizza);
-      setTotalPrice(pizza.price); // Set initial total price
+      setTotalPrice(pizza.price);
     } else {
-      // If no pizza data is found, redirect to home or show an error
       navigate('/');
     }
   }, [navigate]);
 
-  // Handle quantity change and recalculate the total price
   const handleQuantityChange = (e) => {
     const newQuantity = parseInt(e.target.value, 10);
     if (newQuantity > 0) {
@@ -50,12 +47,9 @@ const OrderPage = () => {
       payment_mode: paymentMode,
       delivery_location: deliveryLocation,
     };
-    
-
-  
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/order', {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +59,7 @@ const OrderPage = () => {
 
       if (response.ok) {
         alert('Order placed successfully!');
-        navigate("/"); // Redirect to home page
+        navigate("/");
       } else {
         alert('Failed to place the order');
       }
@@ -84,7 +78,6 @@ const OrderPage = () => {
           <h2>{selectedPizza.name}</h2>
           <p>Price: ${selectedPizza.price.toFixed(2)}</p>
 
-          {/* Quantity Input */}
           <div>
             <label htmlFor="quantity">Quantity:</label>
             <input
@@ -97,7 +90,6 @@ const OrderPage = () => {
             />
           </div>
 
-          {/* Updated Total Price */}
           <p>Total Price: ${totalPrice.toFixed(2)}</p>
 
           <form onSubmit={handleSubmit}>

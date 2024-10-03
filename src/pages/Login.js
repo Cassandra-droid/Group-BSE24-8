@@ -16,7 +16,7 @@ function Signup() {
     const user = { username: loginUsername, password: loginPassword };
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function Signup() {
     const user = { username: signupUsername, email: signupEmail, password: signupPassword };
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
