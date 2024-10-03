@@ -21,6 +21,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "build": "next build", 
+    "start": "next start",
+    "test:e2e": "cypress run"
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
