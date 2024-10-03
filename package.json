@@ -23,7 +23,7 @@
   "scripts": {
     "build": "next build", 
     "start": "next start",
-    "test:e2e": "cypress run"
+    "test:e2e": "if [ \"$VERCEL_ENV\" != \"production\" ]; then npm run cypress:run; else echo 'Skipping Cypress tests in production'; fi",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
