@@ -21,9 +21,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "build": "next build", 
-    "start": "next start",
-    "test:e2e": "if [ \"$VERCEL_ENV\" != \"production\" ]; then npm run cypress:run; else echo 'Skipping Cypress tests in production'; fi",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
@@ -60,7 +57,6 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^9.0.0",
     "@eslint/js": "^9.11.1",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.36.1",
