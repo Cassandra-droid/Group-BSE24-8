@@ -12,7 +12,6 @@ function Signup() {
   // Handle login form submission
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    const url = `http://localhost:5000/api/auth/login`;
     const user = { username: loginUsername, password: loginPassword };
 
     try {
@@ -46,7 +45,6 @@ function Signup() {
       return;
     }
 
-    const url = `http://localhost:5000/api/auth/signup`;
     const user = { username: signupUsername, email: signupEmail, password: signupPassword };
 
     try {
@@ -57,8 +55,6 @@ function Signup() {
         },
         body: JSON.stringify(user),
       });
-
-      console.log(response); 
 
       const data = await response.json();
 
@@ -104,7 +100,7 @@ function Signup() {
 
       <div className="rightSide">
         <h1>Sign Up</h1>
-        <p>Don&apos;t have an account? Please first sign up!</p> {/* Use &apos; to escape the single quote */}
+        <p>Don&apos;t have an account? Please first sign up!</p>
         <form onSubmit={handleSignupSubmit}>
           <label htmlFor="signupUsername">Username</label>
           <input
