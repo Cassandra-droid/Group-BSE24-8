@@ -16,3 +16,4 @@ module.exports = {
     // Add custom linting rules here
   },
 };
+
