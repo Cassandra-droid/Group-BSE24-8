@@ -40,10 +40,6 @@ jobs:
             exit 1
           }
 
-      - name: Debug environment variables
-        run: env
-
-
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
