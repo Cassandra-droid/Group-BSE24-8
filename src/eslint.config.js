@@ -8,9 +8,6 @@ export default [
         browser: true,
         es6: true,
       },
-      ecmaFeatures: {
-        jsx: true,
-      },
     },
     plugins: {
       react: {
