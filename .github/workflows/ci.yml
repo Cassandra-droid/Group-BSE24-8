@@ -36,7 +36,7 @@ jobs:
       - name: Check Vercel Token
         run: |
           if (-not $env:VERCEL_TOKEN) {
-            Write-Host "VERCEL_TOKEN is not set!"
+            echo "VERCEL_TOKEN is not set!"
             exit 1
           }
 
