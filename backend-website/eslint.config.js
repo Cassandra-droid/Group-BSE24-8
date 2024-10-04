@@ -1,4 +1,4 @@
- export default {
+export default {
   env: {
     node: true,
     es2021: true,
