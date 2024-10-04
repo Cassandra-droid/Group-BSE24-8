@@ -30,9 +30,17 @@ jobs:
       - name: Lint code
         run: npm run lint:fix
 
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Check Vercel Token
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "VERCEL_TOKEN is not set!"
+            exit 1
+          fi
+
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          npm install -g vercel
-          vercel --prod --yes --debug # Added debug for detailed logs
+        run: vercel --prod --yes --debug # Added debug for detailed logs
