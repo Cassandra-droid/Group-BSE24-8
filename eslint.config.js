@@ -1,18 +1,24 @@
-export default {
-  env: {
-    browser: true,
-    es6: true,
-  },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
+export default [
+  {
+    files: ["src/**/*.{js,jsx}"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+      globals: {
+        browser: true,
+        es6: true,
+      },
+      ecmaFeatures: {
+        jsx: true,
+      },
     },
-    ecmaVersion: 2021,
-    sourceType: 'module',
+    plugins: {
+      react: {
+        recommended: true,
+      },
+    },
+    rules: {
+      // Add custom linting rules here
+    },
   },
-  plugins: ['react'],
-  rules: {
-    // Add custom rules here
-  },
-};
+];
