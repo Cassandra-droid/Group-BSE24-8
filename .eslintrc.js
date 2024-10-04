@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   env: {
     browser: true,
     es6: true,
@@ -13,7 +13,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    // Add custom linting rules here
+    // Add custom rules here
   },
 };
-
