@@ -4,8 +4,8 @@ name: Deploy to Vercel Production
 on:
   workflow_run:
     workflows: ["CI Pipeline"]  # This must match the name of your CI workflow
-    types:
-      - completed  # Trigger only after CI completion
+   # types:
+      #- completed  # Trigger only after CI completion
 
 jobs:
   deploy:
