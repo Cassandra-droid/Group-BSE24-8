@@ -9,6 +9,7 @@ import Login from "./pages/Login.js";
 import Order from "./pages/Order.js";
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
+import { getCLS, getFID, getLCP } from 'web-vitals';
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -34,5 +35,18 @@ function App() {
     </Router>
   );
 }
+
+function sendToAnalytics(metric) {
+  // POST the metrics to your backend (Prometheus or InfluxDB)
+  fetch('https://group-bse-24-8.vercel.app/metrics', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(metric),
+  });
+}
+
+getCLS(sendToAnalytics);
+getFID(sendToAnalytics);
+getLCP(sendToAnalytics);
 
 export default App;
