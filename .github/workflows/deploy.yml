@@ -45,6 +45,10 @@ jobs:
           # Filter to get the last successful deployment ID
           last_successful_id=$(echo "$deployments" | grep -E '✔' | awk '{print $2}' | head -n 1)
           echo "LAST_SUCCESSFUL_DEPLOYMENT_ID=$last_successful_id" >> $GITHUB_ENV
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}  
 
       # Step 6: Rollback on Failure
       - name: Rollback on Failure
