@@ -26,22 +26,22 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-     # Step 4: Deploy to Vercel Production
+      # Step 4: Deploy to Vercel Production
       - name: Deploy to Vercel
         id: deploy
         run: |
-          vercel_url=$(vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} 
+          vercel_url=$(vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --confirm)
           echo "Deployment URL: $vercel_url"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}  
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} 
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       # Step 5: Get the last successful deployment ID
       - name: Get Last Successful Deployment ID
         id: get_last_successful_deployment
         run: |
-          deployments=$(vercel ls --scope=${{ secrets.VERCEL_ORG_ID }} --project=${{ secrets.VERCEL_PROJECT_ID }})
+          deployments=$(vercel ls --scope=${{ secrets.VERCEL_ORG_ID }})
           # Filter to get the last successful deployment ID
           last_successful_id=$(echo "$deployments" | grep -E '✔' | awk '{print $2}' | head -n 1)
           echo "LAST_SUCCESSFUL_DEPLOYMENT_ID=$last_successful_id" >> $GITHUB_ENV
@@ -49,9 +49,9 @@ jobs:
       # Step 6: Rollback on Failure
       - name: Rollback on Failure
         if: failure()  # This condition checks if the previous step failed
-        run: vercel rollback $LAST_SUCCESSFUL_DEPLOYMENT_ID
+        run: vercel rollback $LAST_SUCCESSFUL_DEPLOYMENT_ID --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}  
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
