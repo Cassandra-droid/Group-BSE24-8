@@ -1,0 +1,35 @@
+name: Deploy to Vercel Production
+
+# Trigger deployment when CI Pipeline completes successfully
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]  
+    types:
+      - completed  # This triggers deployment only after the CI workflow is complete
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the latest repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  
+
+      # Step 3: Install Vercel CLI globally
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      # Step 4: Deploy to Vercel Production
+      - name: Deploy to Vercel
+        run: vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --project=$VERCEL_PROJECT_ID
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
