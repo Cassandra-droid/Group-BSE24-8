@@ -4,8 +4,8 @@ name: Deploy to Vercel Production
 on:
   workflow_run:
     workflows: ["CI Pipeline"]  # This must match the name of your CI workflow
-   # types:
-      #- completed  # Trigger only after CI completion
+    types:
+      - completed  # Trigger only after CI completion
 
 jobs:
   deploy:
@@ -41,7 +41,7 @@ jobs:
       - name: Get Last Successful Deployment ID
         id: get_last_successful_deployment
         run: |
-          deployments=$(vercel ls --scope=${{ secrets.VERCEL_ORG_ID }})
+          deployments=$(vercel ls --scope=${{ secrets.VERCEL_ORG_ID }} --token=${{ secrets.VERCEL_TOKEN }})
           # Filter to get the last successful deployment ID
           last_successful_id=$(echo "$deployments" | grep -E '✔' | awk '{print $2}' | head -n 1)
           echo "LAST_SUCCESSFUL_DEPLOYMENT_ID=$last_successful_id" >> $GITHUB_ENV
