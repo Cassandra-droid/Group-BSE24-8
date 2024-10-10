@@ -28,8 +28,9 @@ jobs:
 
       # Step 4: Deploy to Vercel Production
       - name: Deploy to Vercel
-        run: vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID
+        run: vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --project=$VERCEL_PROJECT_ID
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
