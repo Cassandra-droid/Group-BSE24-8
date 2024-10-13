@@ -63,5 +63,5 @@ jobs:
         run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{"event": "Deployment", "status": "Success", "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}' \
-          https://your-logging-api-url/logs
+          http://localhost:5000/api/logs
 
