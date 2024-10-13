@@ -59,3 +59,9 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
+      - name: Log deployment
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"event": "Deployment", "status": "Success", "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}' \
+          https://your-logging-api-url/logs
+
