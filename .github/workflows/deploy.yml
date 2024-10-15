@@ -1,11 +1,20 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 name: Deploy to Vercel Production
 
-# Trigger deployment when CI Pipeline completes successfully
 on:
   workflow_run:
-    workflows: ["CI Pipeline"]  # This must match the name of your CI workflow
+    workflows: ["CI Pipeline"]
     types:
-      - completed  # Trigger only after CI completion
+      - completed
 
 jobs:
   deploy:
@@ -16,18 +25,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js (adjust version as per your project)
+      # Step 2: Cache Node.js modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 3: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Or another Node.js version if needed
+          node-version: '16'
 
-      # Step 3: Install Vercel CLI globally
+      # Step 4: Install Vercel CLI globally if not cached
       - name: Install Vercel CLI
         run: npm install -g vercel
-        if: ${{ !steps.check_cache.outputs.cache-hit }}
 
-      # Step 4: Deploy to Vercel Production
+      # Step 5: Deploy to Vercel Production
       - name: Deploy to Vercel
         id: deploy
         run: |
@@ -38,12 +55,11 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} 
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      # Step 5: Get the last successful deployment ID
+      # Step 6: Get the last successful deployment ID
       - name: Get Last Successful Deployment ID
         id: get_last_successful_deployment
         run: |
           deployments=$(vercel ls --scope=${{ secrets.VERCEL_ORG_ID }} --token=${{ secrets.VERCEL_TOKEN }})
-          # Filter to get the last successful deployment ID
           last_successful_id=$(echo "$deployments" | grep -E '✔' | awk '{print $2}' | head -n 1)
           echo "LAST_SUCCESSFUL_DEPLOYMENT_ID=$last_successful_id" >> $GITHUB_ENV
         env:
@@ -51,30 +67,18 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}  
 
-      # Step 6: Rollback on Failure
+      # Step 7: Rollback on Failure
       - name: Rollback on Failure
-        if: failure()  # This condition checks if the previous step failed
+        if: failure() 
         run: vercel rollback $LAST_SUCCESSFUL_DEPLOYMENT_ID --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-           ${{ runner.os }}-node-
-
+      # Step 8: Create Sentry Release
       - name: Create Sentry Release
         run: |
           npx sentry-cli releases new -p javascript-react $GITHUB_SHA
           npx sentry-cli releases set-commits --auto $GITHUB_SHA
           npx sentry-cli releases finalize $GITHUB_SHA
-      
-
-
-      
-
