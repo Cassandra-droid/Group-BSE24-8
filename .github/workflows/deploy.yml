@@ -68,6 +68,6 @@ jobs:
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
-          npx sentry-cli releases new -p javascript-react $GITHUB_SHA --ignore-missing
-          npx sentry-cli releases set-commits --auto $GITHUB_SHA
-          npx sentry-cli releases finalize $GITHUB_SHA
+          npx sentry-cli releases new -p javascript-react 6deca46
+          npx sentry-cli releases set-commits --auto 6deca46
+          npx sentry-cli releases finalize 6deca46
