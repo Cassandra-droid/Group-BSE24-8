@@ -58,6 +58,16 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      
+      # Before deployment, create a new release
+        npx sentry-cli releases new -p javascript-react $GITHUB_SHA
+
+      # Set commits (optional)  
+        npx sentry-cli releases set-commits --auto $GITHUB_SHA
+
+      # Finalize the release
+        npx sentry-cli releases finalize $GITHUB_SHA
+
 
       
 
