@@ -15,6 +15,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Collect metrics
+        run: |
+          # Replace with your metric collection logic
+          metrics_data = collect_metrics()
+
+      - name: Send metrics to Graphite
+        uses: grafana/graphite-plugin@v1
+        with:
+          graphite_server: http://your_graphite_server:8080
+          graphite_prefix: your_metric_prefix
+          metrics: |
+            {{ metrics_data }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -32,6 +48,6 @@ jobs:
 
       - name: Install Vercel CLI
         run: npm install -g vercel
-
-
+      
+      
 
