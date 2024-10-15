@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s # Default scrape interval is 15 seconds.
+
+scrape_configs:
+  - job_name: 'nodejs-backend'
+    static_configs:
+      - targets: ['localhost:5000'] # Replace with your backend server address and port.
