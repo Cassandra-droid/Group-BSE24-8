@@ -67,15 +67,13 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
            ${{ runner.os }}-node-
+
+      - name: Create Sentry Release
+        run: |
+          npx sentry-cli releases new -p javascript-react $GITHUB_SHA
+          npx sentry-cli releases set-commits --auto $GITHUB_SHA
+          npx sentry-cli releases finalize $GITHUB_SHA
       
-      # Before deployment, create a new release
-        npx sentry-cli releases new -p javascript-react $GITHUB_SHA
-
-      # Set commits (optional)  
-        npx sentry-cli releases set-commits --auto $GITHUB_SHA
-
-      # Finalize the release
-        npx sentry-cli releases finalize $GITHUB_SHA
 
 
       
