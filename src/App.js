@@ -15,13 +15,17 @@ import { Integrations } from '@sentry/tracing';
 
 // Initialize Sentry
 Sentry.init({
-  dsn: "https://e4ede56747bb16ddfff952a1a86c4a92@o4508126074765312.ingest.us.sentry.io/4508126084136960",// Replace with your actual DSN
-  release: process.env.SENTRY_RELEASE,
-  integrations: [
-    new Integrations.BrowserTracing(),
-  ],
-  tracesSampleRate: 1.0, // Adjust this for your needs; 1.0 captures all transactions
+  dsn: "https://e4ede56747bb16ddfff952a1a86c4a92@o4508126074765312.ingest.us.sentry.io/4508126084136960",
+  integrations: [Sentry.browserTracingIntegration()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+  // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+  tracePropagationTargets: ["localhost", "http://group-bse-24-8.vercel.app/"],
 });
+
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
