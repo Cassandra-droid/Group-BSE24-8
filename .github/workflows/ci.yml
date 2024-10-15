@@ -1,24 +1,37 @@
-name: CI Pipeline
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
-      - name: Checkout repository
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+  lint:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Lint code
+        run: npm run lint:fix
+
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -29,13 +42,13 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: npm test -- --ci
 
-      - name: Lint code
-        run: npm run lint:fix
-
-      - name: Install Vercel CLI
-        run: npm install -g vercel
-      
-      
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+           ${{ runner.os }}-node-
 
