@@ -63,6 +63,8 @@ jobs:
         run: npm install -g @sentry/cli
 
       - name: Create Sentry Release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           npx sentry-cli releases new -p javascript-react $GITHUB_SHA
           npx sentry-cli releases set-commits --auto $GITHUB_SHA
