@@ -1,4 +1,4 @@
-This is a simple web application that provides a platform for users to interact with a front end built using React and a back end built using Node.js
+This is a simple web application that provides a platform for users to interact with a front end built using React and a back end built using Node.js.
 
 Start by cloning the project from GitHub to your local machine: git clone https://github.com/yourusername/repository-name.git
 
